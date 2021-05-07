@@ -1,0 +1,4 @@
+name: Discord
+version: ${project.version}
+main: dev.midka.DiscordChat.DiscordChatPlugin
+author: Midka

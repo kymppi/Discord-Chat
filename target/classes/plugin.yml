@@ -1,0 +1,4 @@
+name: Discord
+version: 1.0-SNAPSHOT
+main: dev.midka.DiscordChat.DiscordChatPlugin
+author: Midka
