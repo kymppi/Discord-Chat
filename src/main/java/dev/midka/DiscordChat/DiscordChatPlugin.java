@@ -14,7 +14,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
-import java.lang.Override;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,11 +70,19 @@ public class DiscordChatPlugin extends JavaPlugin {
             }
         }
         jda.addEventListener(new DiscordListener(this));
+
+        EmbedBuilder builder = new EmbedBuilder().setTitle("Server started!");
+        builder.setColor(Color.GREEN);
+        chatChannel.sendMessage(builder.build()).queue();
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
+
+        EmbedBuilder builder = new EmbedBuilder().setTitle("Server stopped!");
+        builder.setColor(Color.RED);
+        chatChannel.sendMessage(builder.build()).queue();
 
         // Shutting down jda if not null
         if (jda != null) jda.shutdownNow();

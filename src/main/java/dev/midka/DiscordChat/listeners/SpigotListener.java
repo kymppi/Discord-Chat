@@ -1,7 +1,6 @@
 package dev.midka.DiscordChat.listeners;
 
 import dev.midka.DiscordChat.DiscordChatPlugin;
-import dev.midka.DiscordChat.features.WebhookFeature;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,11 +51,7 @@ public class SpigotListener implements Listener {
         String deathsMessage = event.getDeathMessage() == null ?
                 player.getDisplayName() + " died." :
                 event.getDeathMessage();
-        if (plugin.getConfig().getBoolean("use-webhooks")) {
-            plugin.getWebhookFeature().sendMessage(player, deathsMessage);
-        } else {
-            plugin.sendMessage(player, deathsMessage, true, Color.RED);
-        }
+        plugin.sendMessage(player, deathsMessage, true, Color.RED);
 
 
     }
@@ -67,15 +62,6 @@ public class SpigotListener implements Listener {
         String display = plugin.getAdvancementList().get(advancementKey);
         if (display == null) return;
         String message = event.getPlayer().getDisplayName() + " has made the advancement ["+display+"]";
-        if (plugin.getConfig().getBoolean("use-webhooks")) {
-            plugin.getWebhookFeature().sendMessage(event.getPlayer(), message);
-        } else {
-            plugin.sendMessage(
-                    event.getPlayer(),
-                    message,
-                    true,
-                    Color.CYAN);
-        }
-
+        plugin.sendMessage(event.getPlayer(), message, true, Color.CYAN);
     }
 }
